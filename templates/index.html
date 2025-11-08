@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ Energy Consumption Predictor</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>⚡ Energy Consumption Prediction Dashboard</h1>
+    <p>Enter 36 feature values (comma-separated) or use sample data.</p>
+
+    <textarea id="inputData" placeholder="Enter 36 comma-separated numeric values..."></textarea>
+
+    <div class="buttons">
+      <button id="sampleBtn" onclick="loadSample()">Load Sample</button>
+      <button id="predictBtn" onclick="sendPrediction()">Predict</button>
+    </div>
+
+    <div id="result">🧠 Waiting for input...</div>
+  </div>
+
+  <footer>
+    <p>Developed by <b>Manisha R P</b> — Powered by AI ⚙️</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

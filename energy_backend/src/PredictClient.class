@@ -1,0 +1,58 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
+public class PredictClient {
+   public PredictClient() {
+   }
+
+   public static void main(String[] var0) {
+      try {
+         String var1 = "http://127.0.0.1:5000/predict";
+         String var2 = "    {\n        \"input\": [[[0.5, 0.7, 0.2, 0.9, 0.4, 0.6, 0.8, 0.3, 0.1, 0.2,\n                   0.4, 0.7, 0.5, 0.8, 0.6, 0.9, 0.3, 0.1, 0.5, 0.6,\n                   0.8, 0.4, 0.2, 0.3]]]\n    }\n";
+         URL var3 = new URL(var1);
+         HttpURLConnection var4 = (HttpURLConnection)var3.openConnection();
+         var4.setRequestMethod("POST");
+         var4.setRequestProperty("Content-Type", "application/json");
+         var4.setDoOutput(true);
+         OutputStream var5 = var4.getOutputStream();
+
+         try {
+            byte[] var6 = var2.getBytes(StandardCharsets.UTF_8);
+            var5.write(var6, 0, var6.length);
+         } catch (Throwable var9) {
+            if (var5 != null) {
+               try {
+                  var5.close();
+               } catch (Throwable var8) {
+                  var9.addSuppressed(var8);
+               }
+            }
+
+            throw var9;
+         }
+
+         if (var5 != null) {
+            var5.close();
+         }
+
+         BufferedReader var11 = new BufferedReader(new InputStreamReader(var4.getInputStream(), StandardCharsets.UTF_8));
+         StringBuilder var12 = new StringBuilder();
+
+         String var7;
+         while((var7 = var11.readLine()) != null) {
+            var12.append(var7.trim());
+         }
+
+         var11.close();
+         System.out.println("✅ Server Response: " + var12.toString());
+      } catch (Exception var10) {
+         var10.printStackTrace();
+      }
+
+   }
+}
